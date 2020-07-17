@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Confirm, Button, Loader } from "semantic-ui-react";
+import NoteM from "../../models/Note";
+import dbConnect from "../../utils/dbConnect";
 
 const Note = ({ note }) => {
   const [confirm, setConfirm] = useState(false);
@@ -34,15 +36,15 @@ const Note = ({ note }) => {
     setIsDeleting(true);
     close();
   };
-
+  const newNote = JSON.parse(note);
   return (
     <div className="note-container">
       {isDeleting ? (
         <Loader active />
       ) : (
         <>
-          <h1>{note.title}</h1>
-          <p>{note.description}</p>
+          <h1>{newNote.title}</h1>
+          <p>{newNote.description}</p>
           <Button color="red" onClick={open}>
             Delete
           </Button>
@@ -53,11 +55,12 @@ const Note = ({ note }) => {
   );
 };
 
-export async function getStaticProps({ query: { id } }) {
-  const res = await fetch(`http://localhost:3000/api/notes/${id}`);
-  const { data } = await res.json();
+export async function getServerSideProps({ query: { id } }) {
+  dbConnect();
+  const note = await NoteM.findById(id);
   return {
-    props: { note: data },
+    props: { note: JSON.stringify(note) },
   };
 }
+
 export default Note;
