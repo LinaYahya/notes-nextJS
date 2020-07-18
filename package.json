@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cd notes && next dev",
-    "build": "cd notes && next build",
-    "start": "cd notes && next start"
+    "dev": "cd notes && npm run dev",
+    "build": "cd notes && npm run build",
+    "start": "cd notes && npm run start"
   },
   "repository": {
     "type": "git",
