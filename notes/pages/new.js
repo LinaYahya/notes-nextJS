@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Button, Loader } from "semantic-ui-react";
 
 function newNote() {
   const [form, setForm] = useState({ title: "", description: "" });
@@ -27,6 +27,7 @@ function newNote() {
         },
         body: JSON.stringify(form),
       });
+      router.push("/");
     } catch (error) {
       console.log(error);
     }

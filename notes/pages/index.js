@@ -6,7 +6,6 @@ function Home({ notes }) {
     <div className="notes-container">
       <h1>Notes</h1>
       <div className="grid wrapper">
-        {console.log(notes, 'hi note')}
         {notes?.map((note) => (
           <div key={note._id}>
             <Card>
