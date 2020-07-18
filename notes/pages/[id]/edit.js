@@ -1,16 +1,18 @@
-import Link from "next/link";
 import { useState, useEffect } from "react";
-import fetch from "isomorphic-unfetch";
 import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
+import NoteM from "../../models/Note";
+import dbConnect from "../../utils/dbConnect";
 
 const EditNote = ({ note }) => {
+  const newNote = JSON.parse(note);
   const [form, setForm] = useState({
-    title: note.title,
-    description: note.description,
+    title: newNote.title,
+    description: newNote.description,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+
   const router = useRouter();
 
   useEffect(() => {
@@ -30,7 +32,6 @@ const EditNote = ({ note }) => {
         {
           method: "PUT",
           headers: {
-            Accept: "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(form),
@@ -111,11 +112,11 @@ const EditNote = ({ note }) => {
   );
 };
 
-export async function getStaticProps({ query: { id } }) {
-  const res = await fetch(`http://localhost:3000/api/notes/${id}`);
-  const { data } = await res.json();
+export async function getServerSideProps({ query: { id } }) {
+  dbConnect();
+  const note = await NoteM.findById(id);
   return {
-    props: { note: data },
+    props: { note: JSON.stringify(note) },
   };
 }
 
