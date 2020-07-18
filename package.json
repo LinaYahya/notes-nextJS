@@ -1,0 +1,22 @@
+{
+  "name": "notes-nextjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd notes && next dev",
+    "build": "cd notes && next build",
+    "start": "cd notes && next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LinaYahya/notes-nextJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LinaYahya/notes-nextJS/issues"
+  },
+  "homepage": "https://github.com/LinaYahya/notes-nextJS#readme"
+}
