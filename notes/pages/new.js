@@ -21,7 +21,7 @@ function newNote() {
 
   const createNote = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/notes", {
+      const res = await fetch("https://notes-next-js.vercel.ap/api/notes", {
         method: "POST",
         headers: {
           Accept: "application/json",

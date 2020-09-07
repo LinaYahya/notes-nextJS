@@ -28,7 +28,7 @@ const EditNote = ({ note }) => {
   const updateNote = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/notes/${router.query.id}`,
+        `https://notes-next-js.vercel.app/api/notes/${router.query.id}`,
         {
           method: "PUT",
           headers: {

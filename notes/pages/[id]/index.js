@@ -22,7 +22,7 @@ const Note = ({ note }) => {
   const deleteNote = async () => {
     const noteId = router.query.id;
     try {
-      const deleted = await fetch(`http://localhost:3000/api/notes/${noteId}`, {
+      const deleted = await fetch(`https://notes-next-js.vercel.app/api/notes/${noteId}`, {
         method: "Delete",
       });
 
