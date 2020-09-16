@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
-import NoteM from "../../models/Note";
+import NoteModel from "../../models/Note";
 import dbConnect from "../../utils/dbConnect";
 
 const EditNote = ({ note }) => {
@@ -28,7 +28,7 @@ const EditNote = ({ note }) => {
   const updateNote = async () => {
     try {
       const res = await fetch(
-        `https://notes-next-js.vercel.app/api/notes/${router.query.id}`,
+        `/api/notes/${router.query.id}`,
         {
           method: "PUT",
           headers: {
@@ -114,7 +114,7 @@ const EditNote = ({ note }) => {
 
 export async function getServerSideProps({ query: { id } }) {
   dbConnect();
-  const note = await NoteM.findById(id);
+  const note = await NoteModel.findById(id);
   return {
     props: { note: JSON.stringify(note) },
   };
