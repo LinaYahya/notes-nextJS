@@ -36,13 +36,10 @@ function Home({ note }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   dbConnect();
   const notes = await Note.find({});
-
-
   return { props: {note: JSON.stringify(notes)} };
 };
-
 
 export default Home;
